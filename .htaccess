@@ -1,0 +1,6 @@
+Options +FollowSymLinks
+RewriteEngine on
+
+RewriteRule ^link-ekle.html$ link-ekle.php [L,NC]
+RewriteRule ^index.html$ index.php [L,NC]
+RewriteRule ^tesekkurler.html$ tesekkurler.php [L,NC]
