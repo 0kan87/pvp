@@ -86,7 +86,7 @@ if (isset($_POST['kullaniciadi'])) {
 
 <body>
 <form id="form1" name="form1" method="POST" action="<?php echo $loginFormAction; ?>">
-        <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
+        <script src="//mymaplist.com/js/vendor/TweenLite.min.js"></script>
         <body>
             <div class="container">
                 <div class="row vertical-offset-100">
@@ -116,7 +116,7 @@ if (isset($_POST['kullaniciadi'])) {
             </div>
         </body>
             </div>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/giris.js"></script>
 </body>
