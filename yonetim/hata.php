@@ -25,7 +25,4 @@
 <p class="basarisizgiris">&nbsp;</p>
 <p class="basarisizgiris">Kullanıcı adını veya şifrenizi yanlış girdiniz. Kullanıcı adı veya şifrenize phpMyadmin sayfasından &quot;ayarlar&quot; tablosuna girerek yeni bir şifre tanımlayabilir veya şuan ki şifrenizi öğrenebilirsiniz.</p>
 <p class="basarisizgiris">Birazdan tekrar giriş sayfasına yönlendirileceksiniz. Eğer tarayıcınız sizi yönlendirmiyorsa <a href="giris.php" title="Giriş Safası">buradan</a> giriş sayfasına ulaşabilirsiniz.</p>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="../js/bootstrap.js"></script>
-</body>
-</html>
+<?php include "alt.php"; ?>

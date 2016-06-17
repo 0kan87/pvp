@@ -114,25 +114,9 @@ $totalRows_ayar = mysql_num_rows($ayar);
 		</div>
 	</div>
     <div class="container">
-	<!-- InstanceBeginEditable name="icerik alanı" -->Ayarlar Güncellendi İşlem Başarılı<!-- InstanceEndEditable -->
+	   Ayarlar Güncellendi İşlem Başarılı
     </div>
-    <div class="container">
-          <div class="alert alert-warning alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          Oluşabilecek her hata için <a href="http://okandiyebiri.com/pvp-listesi-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
-          </div>
-          </br></br>
-</div>
-     <div class="navbar navbar-default navbar-fixed-bottom">
-         <div class="container">
-             <p class="navbar-text pull-left"><?php echo $row_ayar['footersol']; ?></p>
-             <a href="<?php echo $row_ayar['footerlink']; ?>" class="navbar-btn btn-info btn pull-right"><?php echo $row_ayar['footersag']; ?></a>
-         </div>
-     </div>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="../js/bootstrap.js"></script>
-</body>
-<!-- InstanceEnd --></html>
 <?php
+include "alt.php";
 mysql_free_result($ayar);
 ?>
