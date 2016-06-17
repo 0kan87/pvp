@@ -1,18 +1,15 @@
 <?php require_once('../Connections/baglan.php'); ?>
 <?php
-//initialize the session
 if (!isset($_SESSION)) {
   session_start();
 }
 
-// ** Logout the current user. **
 $logoutAction = $_SERVER['PHP_SELF']."?doLogout=true";
 if ((isset($_SERVER['QUERY_STRING'])) && ($_SERVER['QUERY_STRING'] != "")){
   $logoutAction .="&". htmlentities($_SERVER['QUERY_STRING']);
 }
 
 if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
-  //to fully log out a visitor we need to clear the session varialbles
   $_SESSION['MM_Username'] = NULL;
   $_SESSION['MM_UserGroup'] = NULL;
   $_SESSION['PrevUrl'] = NULL;
@@ -34,22 +31,15 @@ if (!isset($_SESSION)) {
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
 
-// *** Restrict Access To Page: Grant or deny access to this page
 function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
-  // For security, start by assuming the visitor is NOT authorized. 
   $isValid = False; 
 
-  // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
-  // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
   if (!empty($UserName)) { 
-    // Besides being logged in, you may restrict access to only certain users based on an ID established when they login. 
-    // Parse the strings into arrays. 
     $arrUsers = Explode(",", $strUsers); 
     $arrGroups = Explode(",", $strGroups); 
     if (in_array($UserName, $arrUsers)) { 
       $isValid = true; 
     } 
-    // Or, you may restrict access to only certain users based on their username. 
     if (in_array($UserGroup, $arrGroups)) { 
       $isValid = true; 
     } 
@@ -117,16 +107,12 @@ $row_pvpliste = mysql_fetch_assoc($pvpliste);
 $totalRows_pvpliste = mysql_num_rows($pvpliste);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/wordpress.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- InstanceBeginEditable name="doctitle" -->
 <title><?php echo $row_ayar['siteadi']; ?></title>
-<!-- InstanceEndEditable -->
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-<!-- InstanceBeginEditable name="head" -->
-<!-- InstanceEndEditable -->
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-static-top">
@@ -151,55 +137,52 @@ $totalRows_pvpliste = mysql_num_rows($pvpliste);
 		</div>
 	</div>
     <div class="container">
-	<!-- InstanceBeginEditable name="icerik alanı" -->
-      <div class="panel-heading">Pvp Listesi</div>
-  <table class="table table-hover">
-  <tr>
-        <td><b>İcon</b></td>
-        <td><b>Başlık</b></td>
-        <td><b>Durum</b></td>
-        <td><b>Link</b></td>
-        <td><b>Server Tipi</b></td>
-        <td><b>Uridium</b></td>
-        <td><b>Yayınlanma Durumu</b></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <?php do { ?>
-        <tr>
-		  <td><img src="http://www.google.com/s2/favicons?domain=<?php echo $row_pvpliste['link']; ?>" alt="favicon" /></td>
-		  <!--<td><img src="<?php echo $row_pvpliste['link']; ?>/favicon.ico" alt="favicon" /></td>-->
-          <td><?php echo $row_pvpliste['baslik']; ?></td>
-          <td><?php echo $row_pvpliste['durum']; ?></td>
-          <td><a href="<?php echo $row_pvpliste['link']; ?>"><?php echo $row_pvpliste['link']; ?></a></td>
-          <td><?php echo $row_pvpliste['servertipi']; ?></td>
-          <td><?php echo $row_pvpliste['uridium']; ?></td>
-          <td><?php echo $row_pvpliste['yayinlanmadurumu']; ?></td>
-          <td><a href="pvp-link-<?php echo $row_pvpliste['id']; ?>-duzenle.html"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-          <td><a href="liste-sil.php?id=<?php echo $row_pvpliste['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
-        </tr>
-        <?php } while ($row_pvpliste = mysql_fetch_assoc($pvpliste)); ?>
-  </table>
-	<!-- InstanceEndEditable -->
+		<table class="table table-hover table-bordered table-responsive">
+			<thead bgcolor="#222222" style="color:white;">
+				<tr>
+					<td>#</td>
+					<td class="hidden-xs">Başlık</td>
+					<td class="hidden-xs">Durum</td>
+					<td>Link</td>
+					<td class="hidden-xs">Server Tipi</td>
+					<td class="hidden-xs">Kapasite</td>
+					<td colspan="3">Yayınlanma Durumu</td>
+				</tr>
+			</thead>
+	      	<?php do { ?>
+		        <tr>
+				  <td><img src="http://www.google.com/s2/favicons?domain=<?php echo $row_pvpliste['link']; ?>" alt="favicon" /></td>
+				  <!--src kısmına alternatif site ağırlaşırsa <?php echo $row_pvpliste['link']; ?>/favicon.ico" alt="favicon" /> -->
+		          <td class="hidden-xs"><?php echo $row_pvpliste['baslik']; ?></td>
+		          <td class="hidden-xs"><?php echo $row_pvpliste['durum']; ?></td>
+		          <td ><a href="<?php echo $row_pvpliste['link']; ?>"><?php echo $row_pvpliste['link']; ?></a></td>
+		          <td class="hidden-xs"><?php echo $row_pvpliste['servertipi']; ?></td>
+		          <td class="hidden-xs"><?php echo $row_pvpliste['uridium']; ?></td>
+		          <td><?php echo $row_pvpliste['yayinlanmadurumu']; ?></td>
+		          <td><center><a href="pvp-link-<?php echo $row_pvpliste['id']; ?>-duzenle.html"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
+		          <td><center><a href="liste-sil.php?id=<?php echo $row_pvpliste['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
+		        </tr>
+	        <?php } while ($row_pvpliste = mysql_fetch_assoc($pvpliste)); ?>
+  		</table>
     </div>
+
     <div class="container">
           <div class="alert alert-warning alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           Oluşabilecek her hata için <a href="http://okandiyebiri.com/pvp-listesi-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
           </div>
           </br></br>
-</div>
-     <div class="navbar navbar-default navbar-fixed-bottom">
-         <div class="container">
-             <a href="<?php echo $row_ayar['footerlink']; ?>" class="navbar-btn btn-primary btn"><?php echo $row_ayar['footersol']; ?> - <?php echo date("o"); ?></a>
-         </div>
-     </div>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="../js/bootstrap.js"></script>
+	</div>
+	<div class="navbar navbar-default navbar-fixed-bottom">
+	 <div class="container">
+	    <a href="<?php echo $row_ayar['footerlink']; ?>" class="navbar-btn btn-primary btn"><?php echo $row_ayar['footersol']; ?> - <?php echo date("o"); ?></a>
+	 </div>
+	</div>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
 </body>
-<!-- InstanceEnd --></html>
+</html>
 <?php
 mysql_free_result($ayar);
-
 mysql_free_result($pvpliste);
 ?>

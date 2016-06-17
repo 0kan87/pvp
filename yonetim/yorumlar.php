@@ -1,18 +1,14 @@
-<?php require_once('../Connections/baglan.php'); ?>
-<?php
-//initialize the session
+<?php require_once('../Connections/baglan.php');
 if (!isset($_SESSION)) {
   session_start();
 }
 
-// ** Logout the current user. **
 $logoutAction = $_SERVER['PHP_SELF']."?doLogout=true";
 if ((isset($_SERVER['QUERY_STRING'])) && ($_SERVER['QUERY_STRING'] != "")){
   $logoutAction .="&". htmlentities($_SERVER['QUERY_STRING']);
 }
 
 if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
-  //to fully log out a visitor we need to clear the session varialbles
   $_SESSION['MM_Username'] = NULL;
   $_SESSION['MM_UserGroup'] = NULL;
   $_SESSION['PrevUrl'] = NULL;
@@ -34,22 +30,15 @@ if (!isset($_SESSION)) {
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
 
-// *** Restrict Access To Page: Grant or deny access to this page
 function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
-  // For security, start by assuming the visitor is NOT authorized. 
   $isValid = False; 
 
-  // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
-  // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
   if (!empty($UserName)) { 
-    // Besides being logged in, you may restrict access to only certain users based on an ID established when they login. 
-    // Parse the strings into arrays. 
     $arrUsers = Explode(",", $strUsers); 
     $arrGroups = Explode(",", $strGroups); 
     if (in_array($UserName, $arrUsers)) { 
       $isValid = true; 
     } 
-    // Or, you may restrict access to only certain users based on their username. 
     if (in_array($UserGroup, $arrGroups)) { 
       $isValid = true; 
     } 
@@ -150,16 +139,12 @@ $row_yorumlar = mysql_fetch_assoc($yorumlar);
 $totalRows_yorumlar = mysql_num_rows($yorumlar);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/wordpress.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- InstanceBeginEditable name="doctitle" -->
 <title><?php echo $row_ayar['siteadi']; ?></title>
-<!-- InstanceEndEditable -->
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-<!-- InstanceBeginEditable name="head" -->
-<!-- InstanceEndEditable -->
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-static-top">
@@ -173,61 +158,59 @@ $totalRows_yorumlar = mysql_num_rows($yorumlar);
 			<div class="collapse navbar-collapse navbarSec">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="index.php">Anasayfa</a></li>
-                    <li><a href="ayarlar.php">Ayarlar</a></li>
-                    <li><a href="liste.php">Pvp Liste</a></li>
-                  	<li><a href="pvp-ekle.php">Pvp Ekle</a></li>
-                    <li><a href="yorumlar.php">Yorumlar</a></li>
-                    <li><a href="../index.html">Site Anasayfa</a></li>
-                    <li><a href="<?php echo $logoutAction ?>">Çıkış</a></li>
+          <li><a href="ayarlar.php">Ayarlar</a></li>
+          <li><a href="liste.php">Pvp Liste</a></li>
+        	<li><a href="pvp-ekle.php">Pvp Ekle</a></li>
+          <li><a href="yorumlar.php">Yorumlar</a></li>
+          <li><a href="../index.html">Site Anasayfa</a></li>
+          <li><a href="<?php echo $logoutAction ?>">Çıkış</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-    <div class="container">
-	<!-- InstanceBeginEditable name="icerik alanı" -->
-	<div class="panel-heading">Henüz Onaylanmamış veya Düzenlenebilir Yorumlar</div>
-	<table class="table table-hover">
+
+  <div class="container">
+		<table class="table table-hover table-bordered table-responsive">
+      <thead bgcolor="#222222" style="color:white;">
       <tr>
-        <td width="13%"><b>İsim</b></td>
-        <td width="14%"><b>Email</b></td>
-        <td width="43%"><b>Yorum</b></td>
-        <td width="15%"><b>Tarih</b></td>
-        <td width="11%"><b>Durum</b></td>
-        <td width="2%">&nbsp;</td>
-        <td width="2%">&nbsp;</td>
+        <td>İsim</td>
+        <td class="hidden-xs">Email</td>
+        <td class="hidden-xs">Yorum</td>
+        <td class="hidden-xs">Tarih</td>
+        <td colspan="3">Durum</td>
       </tr>
+      </thead>
       <?php do { ?>
         <tr>
           <td><?php echo $row_yorumlar['isim']; ?></td>
-          <td><?php echo $row_yorumlar['email']; ?></td>
-          <td><?php echo $row_yorumlar['yorum']; ?></td>
-          <td><?php echo $row_yorumlar['tarih']; ?></td>
+          <td class="hidden-xs"><?php echo $row_yorumlar['email']; ?></td>
+          <td class="hidden-xs"><?php echo $row_yorumlar['yorum']; ?></td>
+          <td class="hidden-xs"><?php echo $row_yorumlar['tarih']; ?></td>
           <td><?php echo $row_yorumlar['durum']; ?></td>
-          <td><a href="yorumonay.php?id=<?php echo $row_yorumlar['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></a></td>
-          <td><a href="yorum-sil.php?id=<?php echo $row_yorumlar['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></a></td>
+          <td><center><a href="yorumonay.php?id=<?php echo $row_yorumlar['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
+          <td><center><a href="yorum-sil.php?id=<?php echo $row_yorumlar['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
         </tr>
         <?php } while ($row_yorumlar = mysql_fetch_assoc($yorumlar)); ?>
     </table>
-    <!-- InstanceEndEditable -->
+  </div>
+
+  <div class="container">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    Oluşabilecek her hata için <a href="http://okandiyebiri.com/pvp-listesi-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
     </div>
+  </div></br></br>
+
+  <div class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
-          <div class="alert alert-warning alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          Oluşabilecek her hata için <a href="http://okandiyebiri.com/pvp-listesi-scripti/"><strong>destek</strong></a> sitesini ziyaret edin.
-          </div>
-          </br></br>
-</div>
-     <div class="navbar navbar-default navbar-fixed-bottom">
-         <div class="container">
-             <a href="<?php echo $row_ayar['footerlink']; ?>" class="navbar-btn btn-primary btn"><?php echo $row_ayar['footersol']; ?> - <?php echo date("o"); ?></a>
-         </div>
-     </div>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="../js/bootstrap.js"></script>
-</body>
-<!-- InstanceEnd --></html>
+      <a href="<?php echo $row_ayar['footerlink']; ?>" class="navbar-btn btn-primary btn"><?php echo $row_ayar['footersol']; ?> - <?php echo date("o"); ?></a>
+    </div>
+  </div>
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  </body>
+</html>
 <?php
 mysql_free_result($ayar);
-
 mysql_free_result($yorumlar);
 ?>

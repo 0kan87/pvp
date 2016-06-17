@@ -204,7 +204,7 @@ $totalRows_yorunonay = mysql_num_rows($yorunonay);
 					</select>
 				</div></br>
 				<div class="input-group">
-					<input type="submit" value="Kaydı Güncelleştir" class="form-control" aria-describedby="sizing-addon2">
+					<input type="submit" value="Kaydı Güncelleştir" class="btn btn-info" aria-describedby="sizing-addon2">
 					<input type="hidden" name="tarih" value="<?php echo htmlentities($row_yorunonay['tarih'], ENT_COMPAT, 'utf-8'); ?>" />
 					<input type="hidden" name="MM_update" value="form1" />
 					<input type="hidden" name="id" value="<?php echo $row_yorunonay['id']; ?>" />
