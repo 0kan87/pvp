@@ -14,4 +14,6 @@ Pvp Listesi Scriptinin Kurulumu; Connections klasöründeki baglanti.php dosyas
 
 Admin Paneline Giriş; siteadınız.com/yonetim şeklinde açılır. Kullanıcı adı: admin Şifre: 12345 olarak gelir. Şifrenizi admin panelinden değiştirebilirsiniz.
 
+Script ile ilgili sorunlar için <a href="https://okandiyebiri.com/pvp-listesi-scripti/">destek sayfasını</a> ziyaret ederek yorum kısmını kullanabilirsiniz.
+
 İyi kullanımlar.
