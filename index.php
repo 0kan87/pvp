@@ -186,7 +186,7 @@ $queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste,
 					<div class="panel-body">
 						<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtre" />
 					</div>
-					<table class="table table-hover" id="dev-table">
+					<table class="table table-hover table-bordered" id="dev-table">
 						<thead>
 							<tr>
 								<th><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span></th>
@@ -194,14 +194,14 @@ $queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste,
 								<th><?php echo $dil["git"];?></th>
 								<th><?php echo $dil["durum"];?></th>
 								<th class="hidden-xs"><?php echo $dil["servertipi"];?></th>
-								<th class="hidden-xs">Uridium</th>
+								<th class="hidden-xs">Kapasite</th>
 							</tr><?php do { ?>
 						</thead>
 						<tbody>
 							<tr>
 								<td><img src="http://www.google.com/s2/favicons?domain=<?php echo $row_pvpliste['link']; ?>" alt="favicon" /></td>
 								<td><?php echo $row_pvpliste['baslik']; ?></td>
-								<td><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;<a target="_blank" href="<?php echo $row_pvpliste['link']; ?>" rel="nofollow"><?php echo $dil["git"];?></a></td>
+								<td><span class="hidden-xs glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;<a target="_blank" href="<?php echo $row_pvpliste['link']; ?>" rel="nofollow"><?php echo $dil['git'];?></a></td>
 								<td><?php
 									$metin = $row_pvpliste['link'];
 									$bul = array('http://');
@@ -223,22 +223,20 @@ $queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste,
 							</tr><?php } while ($row_pvpliste = mysql_fetch_assoc($pvpliste)); ?>
 						</tbody>
 					</table>
-					<nav>
-						<ul class="pager">
-						<?php if ($pageNum_pvpliste > 0) { ?>
-						<li><a href="<?php printf("%s?pageNum_pvpliste=%d%s", $currentPage, max(0, $pageNum_pvpliste - 1), $queryString_pvpliste); ?>"><?php echo $dil["onceki"];?></a></li>
-						<?php } ?>
-						<?php if ($pageNum_pvpliste < $totalPages_pvpliste) { ?>
-						<li><a href="<?php printf("%s?pageNum_pvpliste=%d%s", $currentPage, min($totalPages_pvpliste, $pageNum_pvpliste + 1), $queryString_pvpliste); ?>"><?php echo $dil["sonraki"];?></a></li>
-						<?php } ?>
-						</ul>
-					</nav>
 				</div>
+				<nav>
+					<ul class="pager">
+					<?php if ($pageNum_pvpliste > 0) { ?>
+					<li><a href="<?php printf("%s?pageNum_pvpliste=%d%s", $currentPage, max(0, $pageNum_pvpliste - 1), $queryString_pvpliste); ?>"><?php echo $dil["onceki"];?></a></li>
+					<?php } ?>
+					<?php if ($pageNum_pvpliste < $totalPages_pvpliste) { ?>
+					<li><a href="<?php printf("%s?pageNum_pvpliste=%d%s", $currentPage, min($totalPages_pvpliste, $pageNum_pvpliste + 1), $queryString_pvpliste); ?>"><?php echo $dil["sonraki"];?></a></li>
+					<?php } ?>
+					</ul>
+				</nav>
 			</div>
 			<!-- PVP LİSTE BİTİŞ -->
-		
 
-		
 			<!-- YORUM FORMU BAŞLANGIÇ -->
 			<div class="col-xs-12 col-md-4">
 			<p><strong><?php echo $dil["yorumbirak"];?></strong></p>
@@ -263,12 +261,10 @@ $queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste,
 						<input type="hidden" name="MM_insert" value="form1" />
 					</div>
 				</form></br>
+				<!-- YORUM FORMU BİTİŞ -->
 			
-			<!-- YORUM FORMU BİTİŞ -->
-		
-			<!-- YORUMLAR BAŞLANGIÇ -->
-			
-			<?php do { ?>
+				<!-- YORUMLAR BAŞLANGIÇ -->
+				<?php do { ?>
 				<div class="media">
 					<div class="media-left">
 						<a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
