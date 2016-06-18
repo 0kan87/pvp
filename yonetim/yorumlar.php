@@ -164,7 +164,7 @@ include "ust.php";
         <?php } while ($row_yorumlar = mysql_fetch_assoc($yorumlar)); ?>
     </table>
   </div>
-s<?php
+<?php
 include "alt.php";
 mysql_free_result($ayar);
 mysql_free_result($yorumlar);

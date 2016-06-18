@@ -7,5 +7,4 @@ if ($dil =="tr" || $dil == "en" || $dil == "de" || $dil == "ru"){
 }else {
 	header("Location:index.html");
 }
-
 ?>
