@@ -48,12 +48,12 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
   $insertSQL = sprintf("INSERT INTO yorumlar (id, isim, email, yorum, tarih, durum) VALUES (%s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['id'], "int"),
-                       GetSQLValueString($_POST['isim'], "text"),
-                       GetSQLValueString($_POST['email'], "text"),
-                       GetSQLValueString($_POST['yorum'], "text"),
-                       GetSQLValueString($_POST['tarih'], "date"),
-                       GetSQLValueString($_POST['durum'], "text"));
+	GetSQLValueString($_POST['id'], "int"),
+	GetSQLValueString($_POST['isim'], "text"),
+	GetSQLValueString($_POST['email'], "text"),
+	GetSQLValueString($_POST['yorum'], "text"),
+	GetSQLValueString($_POST['tarih'], "date"),
+	GetSQLValueString($_POST['durum'], "text"));
 
   mysql_select_db($database_baglan, $baglan);
   $Result1 = mysql_query($insertSQL, $baglan) or die(mysql_error());
@@ -186,6 +186,7 @@ $queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste,
 					<div class="panel-body">
 						<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtre" />
 					</div>
+					<div class="table-responsive">
 					<table class="table table-hover table-bordered" id="dev-table">
 						<thead>
 							<tr>
@@ -193,15 +194,15 @@ $queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste,
 								<th><?php echo $dil["baslik"];?></th>
 								<th><?php echo $dil["git"];?></th>
 								<th><?php echo $dil["durum"];?></th>
-								<th class="hidden-xs"><?php echo $dil["servertipi"];?></th>
-								<th class="hidden-xs">Kapasite</th>
+								<th><?php echo $dil["servertipi"];?></th>
+								<th>Kapasite</th>
 							</tr><?php do { ?>
 						</thead>
 						<tbody>
 							<tr>
 								<td><img src="http://www.google.com/s2/favicons?domain=<?php echo $row_pvpliste['link']; ?>" alt="favicon" /></td>
 								<td><?php echo $row_pvpliste['baslik']; ?></td>
-								<td><span class="hidden-xs glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;<a target="_blank" href="<?php echo $row_pvpliste['link']; ?>" rel="nofollow"><?php echo $dil['git'];?></a></td>
+								<td><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;<a target="_blank" href="<?php echo $row_pvpliste['link']; ?>" rel="nofollow"><?php echo $dil['git'];?></a></td>
 								<td><?php
 									$metin = $row_pvpliste['link'];
 									$bul = array('http://');
@@ -218,11 +219,12 @@ $queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste,
 									}
 									?>
 								</td>
-								<td class="hidden-xs"><?php echo $row_pvpliste['servertipi']; ?></td>
-								<td class="hidden-xs"><?php echo $row_pvpliste['uridium']; ?></td>
+								<td><?php echo $row_pvpliste['servertipi']; ?></td>
+								<td><?php echo $row_pvpliste['uridium']; ?></td>
 							</tr><?php } while ($row_pvpliste = mysql_fetch_assoc($pvpliste)); ?>
 						</tbody>
 					</table>
+					</div>
 				</div>
 				<nav>
 					<ul class="pager">

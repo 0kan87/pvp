@@ -1,5 +1,4 @@
-<?php require_once('../Connections/baglan.php'); ?>
-<?php
+<?php require_once('../Connections/baglan.php');
 if (!isset($_SESSION)) {
   session_start();
 }
@@ -61,8 +60,6 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
   header("Location: ". $MM_restrictGoTo); 
   exit;
 }
-?>
-<?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -93,13 +90,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
 mysql_select_db($database_baglan, $baglan);
 $query_ayar = "SELECT * FROM ayar";
 $ayar = mysql_query($query_ayar, $baglan) or die(mysql_error());
 $row_ayar = mysql_fetch_assoc($ayar);
 $totalRows_ayar = mysql_num_rows($ayar);
-
 mysql_select_db($database_baglan, $baglan);
 $query_pvpliste = "SELECT * FROM pvplist ORDER BY id DESC";
 $pvpliste = mysql_query($query_pvpliste, $baglan) or die(mysql_error());
@@ -108,33 +103,35 @@ $totalRows_pvpliste = mysql_num_rows($pvpliste);
 include "ust.php";
 ?>
     <div class="container">
-		<table class="table table-hover table-bordered table-responsive">
-			<thead bgcolor="#222222" style="color:white;">
-				<tr>
-					<td>#</td>
-					<td class="hidden-xs">Başlık</td>
-					<td class="hidden-xs">Durum</td>
-					<td>Link</td>
-					<td class="hidden-xs">Server Tipi</td>
-					<td class="hidden-xs">Kapasite</td>
-					<td colspan="3">Yayınlanma Durumu</td>
-				</tr>
-			</thead>
-	      	<?php do { ?>
-		        <tr>
-				  <td><img src="http://www.google.com/s2/favicons?domain=<?php echo $row_pvpliste['link']; ?>" alt="favicon" /></td>
-				  <!--src kısmına alternatif site ağırlaşırsa <?php echo $row_pvpliste['link']; ?>/favicon.ico" alt="favicon" /> -->
-		          <td class="hidden-xs"><?php echo $row_pvpliste['baslik']; ?></td>
-		          <td class="hidden-xs"><?php echo $row_pvpliste['durum']; ?></td>
-		          <td ><a href="<?php echo $row_pvpliste['link']; ?>"><?php echo $row_pvpliste['link']; ?></a></td>
-		          <td class="hidden-xs"><?php echo $row_pvpliste['servertipi']; ?></td>
-		          <td class="hidden-xs"><?php echo $row_pvpliste['uridium']; ?></td>
-		          <td><?php echo $row_pvpliste['yayinlanmadurumu']; ?></td>
-		          <td><center><a href="pvp-link-<?php echo $row_pvpliste['id']; ?>-duzenle.html"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
-		          <td><center><a href="liste-sil.php?id=<?php echo $row_pvpliste['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
-		        </tr>
-	        <?php } while ($row_pvpliste = mysql_fetch_assoc($pvpliste)); ?>
-  		</table>
+      <div class="table-responsive">
+  		<table class="table table-hover table-bordered table-responsive">
+  			<thead bgcolor="#222222" style="color:white;">
+  				<tr>
+  					<td>#</td>
+  					<td class="hidden-xs">Başlık</td>
+  					<td class="hidden-xs">Durum</td>
+  					<td>Link</td>
+  					<td class="hidden-xs">Server Tipi</td>
+  					<td class="hidden-xs">Kapasite</td>
+  					<td colspan="3">Yayınlanma Durumu</td>
+  				</tr>
+  			</thead>
+  	      	<?php do { ?>
+  		        <tr>
+  				  <td><img src="http://www.google.com/s2/favicons?domain=<?php echo $row_pvpliste['link']; ?>" alt="favicon" /></td>
+  				  <!--src kısmına alternatif site ağırlaşırsa <?php echo $row_pvpliste['link']; ?>/favicon.ico" alt="favicon" /> -->
+  		          <td class="hidden-xs"><?php echo $row_pvpliste['baslik']; ?></td>
+  		          <td class="hidden-xs"><?php echo $row_pvpliste['durum']; ?></td>
+  		          <td ><a href="<?php echo $row_pvpliste['link']; ?>"><?php echo $row_pvpliste['link']; ?></a></td>
+  		          <td class="hidden-xs"><?php echo $row_pvpliste['servertipi']; ?></td>
+  		          <td class="hidden-xs"><?php echo $row_pvpliste['uridium']; ?></td>
+  		          <td><?php echo $row_pvpliste['yayinlanmadurumu']; ?></td>
+  		          <td><center><a href="pvp-link-<?php echo $row_pvpliste['id']; ?>-duzenle.html"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
+  		          <td><center><a href="liste-sil.php?id=<?php echo $row_pvpliste['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
+  		        </tr>
+  	        <?php } while ($row_pvpliste = mysql_fetch_assoc($pvpliste)); ?>
+    		</table>
+        </div>
     </div>
 <?php
 include "alt.php";

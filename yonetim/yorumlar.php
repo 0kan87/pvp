@@ -22,8 +22,6 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
     exit;
   }
 }
-?>
-<?php
 if (!isset($_SESSION)) {
   session_start();
 }
@@ -60,8 +58,6 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
   header("Location: ". $MM_restrictGoTo); 
   exit;
 }
-?>
-<?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -92,9 +88,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-?>
-<?php require_once('../Connections/baglan.php'); ?>
-<?php
+require_once('../Connections/baglan.php');
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -125,13 +119,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
 mysql_select_db($database_baglan, $baglan);
 $query_ayar = "SELECT * FROM ayar";
 $ayar = mysql_query($query_ayar, $baglan) or die(mysql_error());
 $row_ayar = mysql_fetch_assoc($ayar);
 $totalRows_ayar = mysql_num_rows($ayar);
-
 mysql_select_db($database_baglan, $baglan);
 $query_yorumlar = "SELECT * FROM yorumlar ORDER BY id DESC";
 $yorumlar = mysql_query($query_yorumlar, $baglan) or die(mysql_error());
@@ -139,30 +131,31 @@ $row_yorumlar = mysql_fetch_assoc($yorumlar);
 $totalRows_yorumlar = mysql_num_rows($yorumlar);
 include "ust.php";
 ?>
-
   <div class="container">
-		<table class="table table-hover table-bordered table-responsive">
-      <thead bgcolor="#222222" style="color:white;">
-      <tr>
-        <td>İsim</td>
-        <td class="hidden-xs">Email</td>
-        <td class="hidden-xs">Yorum</td>
-        <td class="hidden-xs">Tarih</td>
-        <td colspan="3">Durum</td>
-      </tr>
-      </thead>
-      <?php do { ?>
+    <div class="table-responsive">
+  		<table class="table table-hover table-bordered">
+        <thead bgcolor="#222222" style="color:white;">
         <tr>
-          <td><?php echo $row_yorumlar['isim']; ?></td>
-          <td class="hidden-xs"><?php echo $row_yorumlar['email']; ?></td>
-          <td class="hidden-xs"><?php echo $row_yorumlar['yorum']; ?></td>
-          <td class="hidden-xs"><?php echo $row_yorumlar['tarih']; ?></td>
-          <td><?php echo $row_yorumlar['durum']; ?></td>
-          <td><center><a href="yorumonay.php?id=<?php echo $row_yorumlar['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
-          <td><center><a href="yorum-sil.php?id=<?php echo $row_yorumlar['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
+          <td>İsim</td>
+          <td>Email</td>
+          <td>Yorum</td>
+          <td>Tarih</td>
+          <td colspan="3">Durum</td>
         </tr>
-        <?php } while ($row_yorumlar = mysql_fetch_assoc($yorumlar)); ?>
-    </table>
+        </thead>
+        <?php do { ?>
+          <tr>
+            <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo $row_yorumlar['isim']; ?></td>
+            <td><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <?php echo $row_yorumlar['email']; ?></td>
+            <td><?php echo $row_yorumlar['yorum']; ?></td>
+            <td><?php echo $row_yorumlar['tarih']; ?></td>
+            <td><?php echo $row_yorumlar['durum']; ?></td>
+            <td><center><a href="yorumonay.php?id=<?php echo $row_yorumlar['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
+            <td><center><a href="yorum-sil.php?id=<?php echo $row_yorumlar['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
+          </tr>
+          <?php } while ($row_yorumlar = mysql_fetch_assoc($yorumlar)); ?>
+      </table>
+    </div>
   </div>
 <?php
 include "alt.php";
