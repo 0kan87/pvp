@@ -207,7 +207,7 @@ $queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste,
 						</thead>
 						<tbody>
 							<tr>
-								<td><img src="http://www.google.com/s2/favicons?domain=<?php echo $row_pvpliste['link']; ?>" alt="favicon" /></td>
+								<td><img src="//www.google.com/s2/favicons?domain=<?php echo $row_pvpliste['link']; ?>" alt="favicon" /></td>
 								<td><?php echo $row_pvpliste['baslik']; ?></td>
 								<td><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;<a target="_blank" href="<?php echo $row_pvpliste['link']; ?>" rel="nofollow"><?php echo $dil['git'];?></a></td>
 								<td><?php
