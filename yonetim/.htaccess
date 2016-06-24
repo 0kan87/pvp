@@ -1,4 +1,0 @@
-Options +FollowSymLinks
-RewriteEngine on
-
-RewriteRule ^pvp-link-(.*)-(.*).html$ liste-duzenle.php?id=$1&duzenle=$2 [L,NC]
