@@ -117,7 +117,7 @@ include "ust.php";
 	<div class="panel panel-default">
 	<div class="panel-heading">
 <?php
-$link		= "http://okandiyebiri.com/pvp/guncelleme.php";
+$link		= "http://okandiyebiri.com/demolar/pvp/guncelleme.php";
 $parcala		= '@<h3 class="panel-title">(.*?)</h3>@si';
 $parcala2	= '@<div class="panel-body">(.*?)</div>@si';
 $botara		= file_get_contents($link);
