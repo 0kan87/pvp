@@ -10,7 +10,6 @@
 	    <a href="<?php echo $row_ayar['footerlink']; ?>" class="navbar-btn btn-primary btn"><?php echo $row_ayar['footersol']; ?> - <?php echo date("o"); ?></a>
 	 </div>
 	</div>
-	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="../js/bootstrap.js"></script>
 </body>
 </html>

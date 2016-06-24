@@ -130,29 +130,36 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 }
 $queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste, $queryString_pvpliste);
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="//www.w3.org/1999/xhtml">
-
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="css/sosyal.css" rel="stylesheet">
-
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $row_ayar['siteadi']; ?></title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/aramayap.css">
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Okan IŞIK">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" href="../../favicon.ico">
+	<title><?php echo $row_ayar['siteadi']; ?></title>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/sosyal.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/aramayap.css">
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-static-top">
+	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container">
-			<a href="index.html" class="navbar-brand"><?php echo $row_ayar['siteadi']; ?></a>
+			<div class="navbar-header">
 			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbarSec">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<div class="collapse navbar-collapse  navbarSec">
+			<a class="navbar-brand" href="./"><?php echo $row_ayar['siteadi']; ?></a>
+			</div>
+
+			<div class="collapse navbar-collapse navbarSec">
 				<ul class="nav navbar-nav navbar-right">
 				<li class="active"><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  <?php echo $dil["anasayfa"];?></a></li>
 				<li><a href="link-ekle.html"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> <?php echo $dil["pvplinkekle"];?></a></li>
@@ -168,7 +175,7 @@ $queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste,
 				</ul>
 			</div>
 		</div>
-	</div>
+	</nav>
 
     <div class="container">
 		<div class="row">
