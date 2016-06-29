@@ -101,6 +101,7 @@ $pvpliste = mysql_query($query_pvpliste, $baglan) or die(mysql_error());
 $row_pvpliste = mysql_fetch_assoc($pvpliste);
 $totalRows_pvpliste = mysql_num_rows($pvpliste);
 include "ust.php";
+include "fonksiyon.php";
 ?>
     <div class="container">
       <div class="table-responsive">
@@ -118,10 +119,10 @@ include "ust.php";
   			</thead>
   	      	<?php do { ?>
   		        <tr>
-  				  <td><img src="http://www.google.com/s2/favicons?domain=<?php echo $row_pvpliste['link']; ?>" alt="favicon" /></td>
-  				  <!--src kısmına alternatif site ağırlaşırsa <?php echo $row_pvpliste['link']; ?>/favicon.ico" alt="favicon" /> -->
+  				  <td width="16"><img width="16px;" src="<?php echo $row_pvpliste['link']; ?>/favicon.ico" onError="this.src='https://www.google.com.tr/favicon.ico';" border="0"/></td>
   		          <td class="hidden-xs"><?php echo $row_pvpliste['baslik']; ?></td>
-  		          <td class="hidden-xs"><?php echo $row_pvpliste['durum']; ?></td>
+  		          <td class="hidden-xs"><?php Link_Kontrol($row_pvpliste['link']);?></td>
+                <!-- Veya <td class="hidden-xs"><?php echo $row_pvpliste['durum']; ?></td> -->
   		          <td ><a href="<?php echo $row_pvpliste['link']; ?>"><?php echo $row_pvpliste['link']; ?></a></td>
   		          <td class="hidden-xs"><?php echo $row_pvpliste['servertipi']; ?></td>
   		          <td class="hidden-xs"><?php echo $row_pvpliste['uridium']; ?></td>
