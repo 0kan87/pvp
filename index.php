@@ -129,6 +129,7 @@ if (!empty($_SERVER['QUERY_STRING'])) {
   }
 }
 $queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste, $queryString_pvpliste);
+include "yonetim/fonksiyon.php";
 ?>
 <!DOCTYPE html>
 <html lang="tr">
@@ -197,7 +198,7 @@ $queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste,
 					<table class="table table-hover table-bordered" id="dev-table">
 						<thead>
 							<tr>
-								<th><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span></th>
+								<th width="16"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span></th>
 								<th><?php echo $dil["baslik"];?></th>
 								<th><?php echo $dil["git"];?></th>
 								<th><?php echo $dil["durum"];?></th>
@@ -207,24 +208,14 @@ $queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste,
 						</thead>
 						<tbody>
 							<tr>
-								<td><img src="s//www.google.com/s2/favicons?domain=<?php echo $row_pvpliste['link']; ?>" alt="favicon" /></td>
+								<td>
+								<!-- Eğer favicon ekli değilse bizim belirlediğimiz sitenin faviconu gözükür örnekte google -->
+								<img width="16px;" src="<?php echo $row_pvpliste['link']; ?>/favicon.ico" onError="this.src='https://www.google.com.tr/favicon.ico';" border="0"/>
+								</td>
 								<td><?php echo $row_pvpliste['baslik']; ?></td>
 								<td><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;<a target="_blank" href="<?php echo $row_pvpliste['link']; ?>" rel="nofollow"><?php echo $dil['git'];?></a></td>
-								<td><?php
-									$metin = $row_pvpliste['link'];
-									$bul = array('http://');
-									$degistir = array('');
-									$degistirilmis = str_replace( $bul, $degistir, $metin );
-									if (!$socket = @fsockopen("$degistirilmis", 80, $errno, $errstr, 2)) 
-									{
-									echo "<span style='font-family: 'Comic Sans MS';'><font color='dd3333'><span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span>&nbsp;{$dil['kapali']}</font></font></span>"; 
-									}
-									else 
-									{
-									echo "<span style='font-family: 'Comic Sans MS';'><font color='01e426'><span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>&nbsp;{$dil['acik']}</font></font></span>"; 
-									fclose($socket); 
-									}
-									?>
+								<td>
+								<?php Link_Kontrol($row_pvpliste['link']);?>
 								</td>
 								<td><?php echo $row_pvpliste['servertipi']; ?></td>
 								<td><?php echo $row_pvpliste['uridium']; ?></td>
