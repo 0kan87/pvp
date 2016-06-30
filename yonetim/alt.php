@@ -7,7 +7,7 @@
 	</div>
 	<div class="navbar navbar-default navbar-fixed-bottom">
 	 <div class="container">
-	    <a href="<?php echo $row_ayar['footerlink']; ?>" class="navbar-btn btn-primary btn"><?php echo $row_ayar['footersol']; ?> - <?php echo date("o"); ?></a>
+	    <a href="<?php echo $row_ayar['footerlink']; ?>" class="navbar-btn btn-default btn"><?php echo $row_ayar['footersol']; ?> - <?php echo date("o"); ?></a>
 	 </div>
 	</div>
 	<script src="../js/bootstrap.js"></script>

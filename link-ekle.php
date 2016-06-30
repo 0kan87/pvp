@@ -132,12 +132,17 @@ $totalRows_linkekle = mysql_num_rows($linkekle);
 				<option value="Açık" <?php if (!(strcmp("Açık", ""))) {echo "SELECTED";} ?>><?php echo $dil["acik"];?></option>
 				<option value="Kapalı" <?php if (!(strcmp("Kapalı", ""))) {echo "SELECTED";} ?>><?php echo $dil["kapali"];?></option>
 				</select>
-			</div></br>
+			</div>
+			<small>Sitenin <b>açık</b> veya <b>kapalı</b> olma durumunu sistem otomatik olarakta kontrol etmektedir.</small></br>
 
 			<div class="input-group">
 				<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></span>
 				<input type="url" name="link" class="form-control" placeholder="http://" required>
-			</div></br>
+			</div>
+			<small>Site adresnin sonuna <b>"/"(Slash)</b> karakteri koymayınız.<br/>
+			<span class="text-success">Doğru: http://okandiyebiri.com</span><br/>
+			<span class="text-danger">Yanlış: <del>http://okandiyebiri.com/</del> </span><br/>
+			</small>
 
 			<div class="input-group">
 				<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> <?php echo $dil["servertipi"];?></span>
@@ -151,13 +156,12 @@ $totalRows_linkekle = mysql_num_rows($linkekle);
 			<div class="input-group">
 				<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Kapasite</span>
 				<input type="number" name="uridium" class="form-control" placeholder="<?php echo $dil["rakamsaldeger"];?>" required>
-			</div></br>
+			</div>
+			<small>Sitenizde en fazla <b>kaç oyuncu</b> oyun oynayabilir?</small></br>
 
-			<div class="input-group">
-				<input type="submit" value="<?php echo $dil["gonder"];?>" class="form-control">
+				<input type="submit" value="<?php echo $dil["gonder"];?>" class="form-control btn btn-primary">
 				<input type="hidden" name="yayinlanmadurumu" value="Taslak" />
 				<input type="hidden" name="MM_insert" value="form1" />
-			</div>
 			</form></br></br>
 		</div>
     </div>
