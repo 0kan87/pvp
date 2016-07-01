@@ -210,7 +210,8 @@ include "yonetim/fonksiyon.php";
 							<tr>
 								<td>
 								<!-- Eğer favicon ekli değilse bizim belirlediğimiz sitenin faviconu gözükür örnekte google -->
-								<img width="16px;" src="<?php echo $row_pvpliste['link']; ?>/favicon.ico" onError="this.src='https://www.google.com.tr/favicon.ico';" border="0"/>
+								<!-- rtrim kullanarak sitenin sonuna olaı eklenmme durumu olan slash karakterini temizledik favicon düzgün gözüksün diye -->
+								<img width="16px;" src="<?php echo rtrim($row_pvpliste['link'],"/"); ?>/favicon.ico" onError="this.src='//www.google.com.tr/favicon.ico';" border="0"/>
 								</td>
 								<td><?php echo $row_pvpliste['baslik']; ?></td>
 								<td><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;<a target="_blank" href="<?php echo $row_pvpliste['link']; ?>" rel="nofollow"><?php echo $dil['git'];?></a></td>
@@ -292,15 +293,16 @@ include "yonetim/fonksiyon.php";
 		</div>	
 	</div>
 
-     <div class="navbar navbar-default navbar-fixed-bottom">
-         <div class="container">
-			 <a href="//www.facebook.com/okandiyebirsayfasi"><i id="social" class="navbar-btn fa fa-facebook-square fa-3x social-fb pull-right"></i></a>
-			 <a href="//twitter.com/okan_diye_biri"><i id="social" class="navbar-btn fa fa-twitter-square fa-3x social-tw pull-right"></i></a>
-			 <a href="//plus.google.com/u/0/116106333253369257329"><i id="social" class="navbar-btn fa fa-google-plus-square fa-3x social-gp pull-right"></i></a>
-			 <a href="mailto:okansibut@gmail.com"><i id="social" class="navbar-btn fa fa-envelope-square fa-3x social-em pull-right"></i></a>
-             <a class="hidden-xs" href="<?php echo $row_ayar['footerlink']; ?>" class="navbar-btn btn-primary btn"><?php echo $row_ayar['footersol']; ?> - <?php echo date("o"); ?></a>
-         </div>
-     </div>
+  <div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+      <p class="navbar-text pull-left">© 2014 - <?php echo date("o"); ?> Okan IŞIK
+           <a href="//okandiyebiri.com" target="_blank" >Pvp Listesi Scripti</a>
+      </p>
+      <a href="<?php echo $row_ayar['footerlink']; ?>" class="hidden-xs navbar-btn btn-default btn pull-right">
+      <span class="glyphicon glyphicon-bookmark"></span>  <?php echo $row_ayar['footersol']; ?></a>
+    </div>
+  </div>
+
 
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>

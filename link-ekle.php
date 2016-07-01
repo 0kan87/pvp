@@ -132,17 +132,12 @@ $totalRows_linkekle = mysql_num_rows($linkekle);
 				<option value="Açık" <?php if (!(strcmp("Açık", ""))) {echo "SELECTED";} ?>><?php echo $dil["acik"];?></option>
 				<option value="Kapalı" <?php if (!(strcmp("Kapalı", ""))) {echo "SELECTED";} ?>><?php echo $dil["kapali"];?></option>
 				</select>
-			</div>
-			<small>Sitenin <b>açık</b> veya <b>kapalı</b> olma durumunu sistem otomatik olarakta kontrol etmektedir.</small></br>
+			</div></br>
 
 			<div class="input-group">
 				<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></span>
 				<input type="url" name="link" class="form-control" placeholder="http://" required>
-			</div>
-			<small>Site adresnin sonuna <b>"/"(Slash)</b> karakteri koymayınız.<br/>
-			<span class="text-success">Doğru: http://okandiyebiri.com</span><br/>
-			<span class="text-danger">Yanlış: <del>http://okandiyebiri.com/</del> </span><br/>
-			</small>
+			</div></br>
 
 			<div class="input-group">
 				<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> <?php echo $dil["servertipi"];?></span>
@@ -156,9 +151,7 @@ $totalRows_linkekle = mysql_num_rows($linkekle);
 			<div class="input-group">
 				<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Kapasite</span>
 				<input type="number" name="uridium" class="form-control" placeholder="<?php echo $dil["rakamsaldeger"];?>" required>
-			</div>
-			<small>Sitenizde en fazla <b>kaç oyuncu</b> oyun oynayabilir?</small></br>
-
+			</div></br>
 				<input type="submit" value="<?php echo $dil["gonder"];?>" class="form-control btn btn-primary">
 				<input type="hidden" name="yayinlanmadurumu" value="Taslak" />
 				<input type="hidden" name="MM_insert" value="form1" />
@@ -166,18 +159,21 @@ $totalRows_linkekle = mysql_num_rows($linkekle);
 		</div>
     </div>
 
-	<div class="navbar navbar-default navbar-fixed-bottom">
-		<div class="container">
-			<a href="//www.facebook.com/okandiyebirsayfasi"><i id="social" class="navbar-btn fa fa-facebook-square fa-3x social-fb pull-right"></i></a>
-			<a href="//twitter.com/okan_diye_biri"><i id="social" class="navbar-btn fa fa-twitter-square fa-3x social-tw pull-right"></i></a>
-			<a href="//plus.google.com/u/0/116106333253369257329"><i id="social" class="navbar-btn fa fa-google-plus-square fa-3x social-gp pull-right"></i></a>
-			<a href="mailto:okansibut@gmail.com"><i id="social" class="navbar-btn fa fa-envelope-square fa-3x social-em pull-right"></i></a>
-			<a href="<?php echo $row_ayar['footerlink']; ?>" class="navbar-btn btn-primary btn"><?php echo $row_ayar['footersol']; ?> - <?php echo date("o"); ?></a>
-		</div>
-	</div>
+  <div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+      <p class="navbar-text pull-left">© 2014 - <?php echo date("o"); ?> Okan IŞIK
+           <a href="//okandiyebiri.com" target="_blank" >Pvp Listesi Scripti</a>
+      </p>
+      <a href="<?php echo $row_ayar['footerlink']; ?>" class="hidden-xs navbar-btn btn-default btn pull-right">
+      <span class="glyphicon glyphicon-bookmark"></span>  <?php echo $row_ayar['footersol']; ?></a>
+    </div>
+  </div>
 
+
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="js/aramayap.js"></script>
 </body>
 </html>
 <?php
