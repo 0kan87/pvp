@@ -180,7 +180,7 @@ include "yonetim/fonksiyon.php";
 					<table id="pvpliste" class="table table-striped table-bordered" cellspacing="0" width="100%">
 						<thead bgcolor="#222222" style="color:white;">
 							<tr>
-								<th width="16"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span></th>
+								<th></th>
 								<th><?php echo $dil["baslik"];?></th>
 								<th><?php echo $dil["git"];?></th>
 								<th><?php echo $dil["durum"];?></th>
