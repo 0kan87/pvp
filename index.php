@@ -121,7 +121,7 @@ include "yonetim/fonksiyon.php";
 	
 	<!-- DİNAMİK TABLO -->
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.min.css">
-	<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.3.min.js"></script>
 	<script type="text/javascript" language="javascript" src="js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" language="javascript" src="js/dataTables.bootstrap.min.js"></script>
 	<script type="text/javascript">
