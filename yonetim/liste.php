@@ -122,7 +122,7 @@ include "fonksiyon.php";
         <tbody>
   	      	<?php do { ?>
   		        <tr>
-  				      <td width="16"><img width="16px;" src="<?php echo rtrim($row_pvpliste['link'],"/"); ?>/favicon.ico" onError="this.src='https://www.google.com.tr/favicon.ico';" border="0"/></td>
+  				      <td width="16"><img width="16px;" src="<?php echo rtrim($row_pvpliste['link'],"/"); ?>/favicon.ico" onError="this.src='../img/pvp.png';" border="0"/></td>
   		          <td class="hidden-xs"><?php echo $row_pvpliste['baslik']; ?></td>
   		          <td class="hidden-xs"><?php Link_Kontrol($row_pvpliste['link']);?></td>
                 <!-- Veya <td class="hidden-xs"><?php echo $row_pvpliste['durum']; ?></td> -->
