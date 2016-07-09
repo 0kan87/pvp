@@ -9,9 +9,6 @@
   </div>
 
 
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/aramayap.js"></script>
+	<script src="../js/bootstrap.js"></script>
 </body>
 </html>

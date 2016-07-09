@@ -84,38 +84,36 @@ if (isset($_POST['kullaniciadi'])) {
 
 <body>
 <form id="form1" name="form1" method="POST" action="<?php echo $loginFormAction; ?>">
-        <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
-        <body>
-            <div class="container">
-                <div class="row vertical-offset-100">
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">                                
-                                <div class="row-fluid user-row">
-                                    <img src="http://s11.postimg.org/7kzgji28v/logo_sm_2_mr_1.png" class="img-responsive" alt="Conxole Admin"/>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <form accept-charset="UTF-8" role="form" class="form-signin">
-                                    <fieldset>
-                                        <label class="panel-login">
-                                            <div class="login_result"></div>
-                                        </label>
-                                        <input class="form-control" placeholder="Kullanıcı Adı" name="kullaniciadi" id="kullaniciadi5" type="text">
-                                        <input class="form-control" placeholder="Şifre" name="sifre" id="sifre" type="password">
-                                        <br></br>
-                                        <input class="btn btn-lg btn-success btn-block" type="submit" name="girisyap" id="girisyap" value="Oturum Aç »">
-                                    </fieldset>
-                                </form>
-                            </div>
+<script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
+<body>
+    <div class="container">
+        <div class="row vertical-offset-100">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">                                
+                        <div class="row-fluid user-row">
+                            <img src="http://s11.postimg.org/7kzgji28v/logo_sm_2_mr_1.png" class="img-responsive" alt="Conxole Admin"/>
                         </div>
+                    </div>
+                    <div class="panel-body">
+                        <form accept-charset="UTF-8" role="form" class="form-signin">
+                            <fieldset>
+                                <label class="panel-login">
+                                    <div class="login_result"></div>
+                                </label>
+                                <input class="form-control" placeholder="Kullanıcı Adı" name="kullaniciadi" id="kullaniciadi5" type="text">
+                                <input class="form-control" placeholder="Şifre" name="sifre" id="sifre" type="password">
+                                <br></br>
+                                <input class="btn btn-lg btn-success btn-block" type="submit" name="girisyap" id="girisyap" value="Oturum Aç »">
+                            </fieldset>
+                        </form>
                     </div>
                 </div>
             </div>
-        </body>
-            </div>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="../js/bootstrap.js"></script>
-<script src="../js/giris.js"></script>
+        </div>
+    </div>
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/giris.js"></script>
 </body>
 </html>

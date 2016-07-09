@@ -105,21 +105,24 @@ include "fonksiyon.php";
 ?>
     <div class="container">
       <div class="table-responsive">
-  		<table class="table table-hover table-bordered table-responsive">
+  		<table id="pvpliste" class="table table-striped table-bordered" cellspacing="0" width="100%">
   			<thead bgcolor="#222222" style="color:white;">
   				<tr>
-  					<td>#</td>
-  					<td class="hidden-xs">Başlık</td>
-  					<td class="hidden-xs">Durum</td>
-  					<td>Link</td>
-  					<td class="hidden-xs">Server Tipi</td>
-  					<td class="hidden-xs">Kapasite</td>
-  					<td colspan="3">Yayınlanma Durumu</td>
+  					<th>#</th>
+  					<th class="hidden-xs">Başlık</th>
+  					<th class="hidden-xs">Durum</th>
+  					<th>Link</th>
+  					<th class="hidden-xs">Server Tipi</th>
+  					<th class="hidden-xs">Kapasite</th>
+  					<th>Yayınlanma Durumu</th>
+            <th>Düzenle</th>
+            <th>Sil</th>
   				</tr>
   			</thead>
+        <tbody>
   	      	<?php do { ?>
   		        <tr>
-  				  <td width="16"><img width="16px;" src="<?php echo rtrim($row_pvpliste['link'],"/"); ?>/favicon.ico" onError="this.src='https://www.google.com.tr/favicon.ico';" border="0"/></td>
+  				      <td width="16"><img width="16px;" src="<?php echo rtrim($row_pvpliste['link'],"/"); ?>/favicon.ico" onError="this.src='https://www.google.com.tr/favicon.ico';" border="0"/></td>
   		          <td class="hidden-xs"><?php echo $row_pvpliste['baslik']; ?></td>
   		          <td class="hidden-xs"><?php Link_Kontrol($row_pvpliste['link']);?></td>
                 <!-- Veya <td class="hidden-xs"><?php echo $row_pvpliste['durum']; ?></td> -->
@@ -131,6 +134,7 @@ include "fonksiyon.php";
   		          <td><center><a href="liste-sil.php?id=<?php echo $row_pvpliste['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>
   		        </tr>
   	        <?php } while ($row_pvpliste = mysql_fetch_assoc($pvpliste)); ?>
+        </tbody>
     		</table>
         </div>
     </div>

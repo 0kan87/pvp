@@ -9,8 +9,28 @@
     <link rel="icon" href="../../favicon.ico">
 	<title><?php echo $row_ayar['siteadi']; ?></title>
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
-	<link rel="stylesheet" href="../css/kaydet.css">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- <link rel="stylesheet" href="../css/kaydet.css"> -->
+
+	<!-- DİNAMİK TABLO -->
+    <link rel="stylesheet" type="text/css" href="../css/dataTables.bootstrap.min.css">
+	<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" language="javascript" src="../js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript" src="../js/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#pvpliste').DataTable( {
+	        "language": {
+	            "lengthMenu": "_MENU_ Listede kaç adet gözüksün?",
+	            "zeroRecords": "Bişey Bulamadım",
+	            "info": "Şuan _PAGE_. sayfadasınız. Toplam _PAGES_ adet sayfa var.",
+	            "infoEmpty": "No records available",
+	            "infoFiltered": "(filtered from _MAX_ total records)",
+	            "search": "Arama Yap",
+	            "paginate": { "next": "Sonraki", "previous": "Önceki"}
+	        }
+	    } );
+	} );
+	</script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-static-top">

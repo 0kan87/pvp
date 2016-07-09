@@ -1,13 +1,10 @@
-<?php require_once('Connections/baglan.php'); ?>
-<?php
+<?php require_once('Connections/baglan.php');
 	session_start();
 	if (!@$_SESSION["dil"]){
 		require("dil/tr.php");
 	}else {
 		require("dil/".$_SESSION["dil"].".php");
 	}
-?>
-<?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -93,7 +90,7 @@ if (isset($_GET['totalRows_yorumlar'])) {
 }
 $totalPages_yorumlar = ceil($totalRows_yorumlar/$maxRows_yorumlar)-1;
 
-$maxRows_pvpliste = 9;
+$maxRows_pvpliste = 300;
 $pageNum_pvpliste = 0;
 if (isset($_GET['pageNum_pvpliste'])) {
   $pageNum_pvpliste = $_GET['pageNum_pvpliste'];
@@ -106,29 +103,7 @@ $query_limit_pvpliste = sprintf("%s LIMIT %d, %d", $query_pvpliste, $startRow_pv
 $pvpliste = mysql_query($query_limit_pvpliste, $baglan) or die(mysql_error());
 $row_pvpliste = mysql_fetch_assoc($pvpliste);
 
-if (isset($_GET['totalRows_pvpliste'])) {
-  $totalRows_pvpliste = $_GET['totalRows_pvpliste'];
-} else {
-  $all_pvpliste = mysql_query($query_pvpliste);
-  $totalRows_pvpliste = mysql_num_rows($all_pvpliste);
-}
-$totalPages_pvpliste = ceil($totalRows_pvpliste/$maxRows_pvpliste)-1;
 
-$queryString_pvpliste = "";
-if (!empty($_SERVER['QUERY_STRING'])) {
-  $params = explode("&", $_SERVER['QUERY_STRING']);
-  $newParams = array();
-  foreach ($params as $param) {
-    if (stristr($param, "pageNum_pvpliste") == false && 
-        stristr($param, "totalRows_pvpliste") == false) {
-      array_push($newParams, $param);
-    }
-  }
-  if (count($newParams) != 0) {
-    $queryString_pvpliste = "&" . htmlentities(implode("&", $newParams));
-  }
-}
-$queryString_pvpliste = sprintf("&totalRows_pvpliste=%d%s", $totalRows_pvpliste, $queryString_pvpliste);
 include "yonetim/fonksiyon.php";
 ?>
 <!DOCTYPE html>
@@ -142,11 +117,30 @@ include "yonetim/fonksiyon.php";
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="icon" href="../../favicon.ico">
-	<title><?php echo $row_ayar['siteadi']; ?></title>
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-	<link href="css/sosyal.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/aramayap.css">
+	
+	<!-- DİNAMİK TABLO -->
+    <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.min.css">
+	<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" language="javascript" src="js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript" src="js/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#pvpliste').DataTable( {
+	        "language": {
+	            "lengthMenu": "_MENU_ Listede kaç adet gözüksün?",
+	            "zeroRecords": "Bişey Bulamadım",
+	            "info": "Şuan _PAGE_. sayfadasınız. Toplam _PAGES_ adet sayfa var.",
+	            "infoEmpty": "No records available",
+	            "infoFiltered": "(filtered from _MAX_ total records)",
+	            "search": "Arama Yap",
+	            "paginate": { "next": "Sonraki", "previous": "Önceki"}
+	        }
+	    } );
+	} );
+	</script>
+
+	<title><?php echo $row_ayar['siteadi']; ?></title>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-static-top">
@@ -181,22 +175,10 @@ include "yonetim/fonksiyon.php";
     <div class="container">
 		<div class="row">
 			<!-- PVP LİSTE BAŞLANGIÇ -->
-			<div class="col-xs-12 col-md-8 table-responsive">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h3 class="panel-title">Pvp Server Listesi</h3>
-						<div class="pull-right">
-							<span class="clickable filter" data-toggle="tooltip" title="Filtre" data-container="body">Filtre
-								<i class="glyphicon glyphicon-filter"></i>
-							</span>
-						</div>
-					</div>
-					<div class="panel-body">
-						<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filtre" />
-					</div>
-					<div class="table-responsive">
-					<table class="table table-hover table-bordered" id="dev-table">
-						<thead>
+			<div class="col-xs-12 col-md-8">
+				<div class="table table-responsive">
+					<table id="pvpliste" class="table table-striped table-bordered" cellspacing="0" width="100%">
+						<thead bgcolor="#222222" style="color:white;">
 							<tr>
 								<th width="16"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span></th>
 								<th><?php echo $dil["baslik"];?></th>
@@ -204,10 +186,10 @@ include "yonetim/fonksiyon.php";
 								<th><?php echo $dil["durum"];?></th>
 								<th><?php echo $dil["servertipi"];?></th>
 								<th>Kapasite</th>
-							</tr><?php do { ?>
+							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr><?php do { ?>
 								<td>
 								<!-- Eğer favicon ekli değilse bizim belirlediğimiz sitenin faviconu gözükür örnekte google -->
 								<!-- rtrim kullanarak sitenin sonuna olaı eklenmme durumu olan slash karakterini temizledik favicon düzgün gözüksün diye -->
@@ -220,21 +202,13 @@ include "yonetim/fonksiyon.php";
 								</td>
 								<td><?php echo $row_pvpliste['servertipi']; ?></td>
 								<td><?php echo $row_pvpliste['uridium']; ?></td>
+
 							</tr><?php } while ($row_pvpliste = mysql_fetch_assoc($pvpliste)); ?>
 						</tbody>
 					</table>
-					</div>
 				</div>
-				<nav>
-					<ul class="pager">
-					<?php if ($pageNum_pvpliste > 0) { ?>
-					<li><a href="<?php printf("%s?pageNum_pvpliste=%d%s", $currentPage, max(0, $pageNum_pvpliste - 1), $queryString_pvpliste); ?>"><?php echo $dil["onceki"];?></a></li>
-					<?php } ?>
-					<?php if ($pageNum_pvpliste < $totalPages_pvpliste) { ?>
-					<li><a href="<?php printf("%s?pageNum_pvpliste=%d%s", $currentPage, min($totalPages_pvpliste, $pageNum_pvpliste + 1), $queryString_pvpliste); ?>"><?php echo $dil["sonraki"];?></a></li>
-					<?php } ?>
-					</ul>
-				</nav>
+
+
 			</div>
 			<!-- PVP LİSTE BİTİŞ -->
 
@@ -302,12 +276,7 @@ include "yonetim/fonksiyon.php";
       <span class="glyphicon glyphicon-bookmark"></span>  <?php echo $row_ayar['footersol']; ?></a>
     </div>
   </div>
-
-
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/aramayap.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
 <?php
