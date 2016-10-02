@@ -186,7 +186,7 @@ include "ust.php";
 
 			<!-- YORUM FORMU BAŞLANGIÇ -->
 			<div class="col-xs-12 col-md-4">
-			<p><strong><?php echo $dil["yorumbirak"];?></strong></p>
+			<p style="color:white;"><strong><?php echo $dil["yorumbirak"];?></strong></p>
 				<form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
 					<div class="input-group">
 						<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
