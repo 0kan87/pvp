@@ -17,6 +17,8 @@ Admin Paneline Giriş; siteadınız.com/yonetim şeklinde açılır. Kullanıcı
 Script ile ilgili sorunlar için <a href="https://okandiyebiri.com/pvp-listesi-scripti/">destek sayfasını</a> ziyaret ederek yorum kısmını kullanabilirsiniz.
 
 İyi kullanımlar.
-<a href="https://okandiyebiri.com/pvp" title="ücretsiz script" alt="ücretsiz script">Canlı Demo</a>
-Site Görsel Önizleme
-<img src="http://i.hizliresim.com/mLJPgZ.png" alt="pvp" title="pvp"/>
+<a href="https://okandiyebiri.com/demolar/pvp" title="ücretsiz script" alt="ücretsiz script">Canlı Demo</a>
+<a href="https://okandiyebiri.com/demolar/pvp/yonetim" title="ücretsiz script" alt="ücretsiz script">Yönetim Paneli</a>
+Kullanıcı adı:demo
+Şifre:123456
+
