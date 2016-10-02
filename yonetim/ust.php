@@ -13,6 +13,7 @@
 
 	<!-- DİNAMİK TABLO -->
     <link rel="stylesheet" type="text/css" href="../css/dataTables.bootstrap.min.css">
+    <script src="../ckeditor/ckeditor.js"></script>
 	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.3.min.js"></script>
 	<script type="text/javascript" language="javascript" src="../js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" language="javascript" src="../js/dataTables.bootstrap.min.js"></script>
@@ -51,6 +52,8 @@
 					<li><a href="ayarlar.php">Ayarlar</a></li>
 					<li><a href="liste.php">Pvp Liste</a></li>
 					<li><a href="pvp-ekle.php">Pvp Ekle</a></li>
+					<li><a href="vip-liste.php">VİP Liste</a></li>
+					<li><a href="vip-pvp-ekle.php">VİP Ekle</a></li>
 					<li><a href="yorumlar.php">Yorumlar</a></li>
 					<li><a href="../index.html">Site Anasayfa</a></li>
 					<li><a href="<?php echo $logoutAction ?>">Çıkış</a></li>

@@ -1,5 +1,8 @@
 <?php
 $dil = array(
+"ziyaret"		=> "Siteyi Ziyaret Et",
+"kacadet"		=> "Listede kaç adet gözüksün",
+"ara"			=> "Ara",
 "anasayfa"		=> "Anasayfa",
 "pvplinkekle"	=> "Pvp Link Ekle",
 "dilseciniz"	=> "Dil Seçiniz",
@@ -9,6 +12,7 @@ $dil = array(
 "rudil"			=> "Rusça",
 "baslik"		=> "Başlık",
 "durum"			=> "Durum",
+"uridium"		=> "uridium",
 "servertipi"	=> "Server Tipi",
 "git"			=> "Git",
 "yorumbirak"	=> "Bir Yorum Bırakın...",
@@ -21,7 +25,7 @@ $dil = array(
 "acik"			=> "Açık",
 "kapali"		=> "Kapalı",
 "sitebasligi"	=> "Site Başlığını Yazın...",
-"rakamsaldeger"	=> "Rakamsal Bir Değer Girin...",
+"rakamsaldeger"	=> "Açıklama Girin...",
 "kasilmalik"	=> "Kasılmalık",
 "vslik"			=> "VSlik",
 "bilinmiyor"	=> "Bilinmiyor",

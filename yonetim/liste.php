@@ -110,10 +110,8 @@ include "fonksiyon.php";
   				<tr>
   					<th>#</th>
   					<th class="hidden-xs">Başlık</th>
-  					<th class="hidden-xs">Durum</th>
   					<th>Link</th>
   					<th class="hidden-xs">Server Tipi</th>
-  					<th class="hidden-xs">Kapasite</th>
   					<th>Yayınlanma Durumu</th>
             <th>Düzenle</th>
             <th>Sil</th>
@@ -122,13 +120,10 @@ include "fonksiyon.php";
         <tbody>
   	      	<?php do { ?>
   		        <tr>
-  				      <td width="16"><img width="16px;" src="<?php echo rtrim($row_pvpliste['link'],"/"); ?>/favicon.ico" onError="this.src='../img/pvp.png';" border="0"/></td>
+  				      <td width="16"><img height="16" width="16" src="http://www.google.com/s2/favicons?domain=<?php echo rtrim($row_pvpliste['link'],"/"); ?>" onError="this.src='../img/pvp.png'" border="0"/></td>
   		          <td class="hidden-xs"><?php echo $row_pvpliste['baslik']; ?></td>
-  		          <td class="hidden-xs"><?php Link_Kontrol($row_pvpliste['link']);?></td>
-                <!-- Veya <td class="hidden-xs"><?php echo $row_pvpliste['durum']; ?></td> -->
   		          <td ><a href="<?php echo $row_pvpliste['link']; ?>"><?php echo $row_pvpliste['link']; ?></a></td>
   		          <td class="hidden-xs"><?php echo $row_pvpliste['servertipi']; ?></td>
-  		          <td class="hidden-xs"><?php echo $row_pvpliste['uridium']; ?></td>
   		          <td><?php echo $row_pvpliste['yayinlanmadurumu']; ?></td>
   		          <td><center><a href="pvp-link-<?php echo $row_pvpliste['id']; ?>-duzenle.html"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></center></td>
   		          <td><center><a href="liste-sil.php?id=<?php echo $row_pvpliste['id']; ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center></td>

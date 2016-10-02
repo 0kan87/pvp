@@ -103,89 +103,38 @@ $query_limit_pvpliste = sprintf("%s LIMIT %d, %d", $query_pvpliste, $startRow_pv
 $pvpliste = mysql_query($query_limit_pvpliste, $baglan) or die(mysql_error());
 $row_pvpliste = mysql_fetch_assoc($pvpliste);
 
+//////////
+
+
+$maxRows_pvpliste = 300;
+$pageNum_pvpliste = 0;
+if (isset($_GET['pageNum_pvpliste'])) {
+  $pageNum_pvpliste = $_GET['pageNum_pvpliste'];
+}
+$startRow_pvpliste = $pageNum_pvpliste * $maxRows_pvpliste;
+
+mysql_select_db($database_baglan, $baglan);
+$query_pvpliste = "SELECT * FROM vpvplist WHERE yayinlanmadurumu = 'Yayınlanmış' ORDER BY id DESC";
+$query_limit_pvpliste = sprintf("%s LIMIT %d, %d", $query_pvpliste, $startRow_pvpliste, $maxRows_pvpliste);
+$vippvpliste = mysql_query($query_limit_pvpliste, $baglan) or die(mysql_error());
+$vip_pvpliste = mysql_fetch_assoc($vippvpliste);
+
 
 include "yonetim/fonksiyon.php";
+include "ust.php";
 ?>
-<!DOCTYPE html>
-<html lang="tr">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Okan IŞIK">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="icon" href="../../favicon.ico">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	
-	<!-- DİNAMİK TABLO -->
-    <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.min.css">
-	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.3.min.js"></script>
-	<script type="text/javascript" language="javascript" src="js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" language="javascript" src="js/dataTables.bootstrap.min.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-	    $('#pvpliste').DataTable( {
-	        "language": {
-	            "lengthMenu": "_MENU_ Listede kaç adet gözüksün?",
-	            "zeroRecords": "Bişey Bulamadım",
-	            "info": "Şuan _PAGE_. sayfadasınız. Toplam _PAGES_ adet sayfa var.",
-	            "infoEmpty": "No records available",
-	            "infoFiltered": "(filtered from _MAX_ total records)",
-	            "search": "Arama Yap",
-	            "paginate": { "next": "Sonraki", "previous": "Önceki"}
-	        }
-	    } );
-	} );
-	</script>
-
-	<title><?php echo $row_ayar['siteadi']; ?></title>
-</head>
-<body>
-	<nav class="navbar navbar-inverse navbar-static-top">
-		<div class="container">
-			<div class="navbar-header">
-			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbarSec">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="./"><?php echo $row_ayar['siteadi']; ?></a>
-			</div>
-
-			<div class="collapse navbar-collapse navbarSec">
-				<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  <?php echo $dil["anasayfa"];?></a></li>
-				<li><a href="link-ekle.html"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> <?php echo $dil["pvplinkekle"];?></a></li>
-					<li class="dropdown">
-					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> <?php echo $dil["dilseciniz"];?> <span class="caret"></span></a>
-					  <ul class="dropdown-menu" role="menu">
-						<li><a href="dil.php?dil=tr"><img src="dil/img/tr.png" alt="<?php echo $dil["trdil"];?>"> <?php echo $dil["trdil"];?></a></li>
-						<li><a href="dil.php?dil=en"><img src="dil/img/en.png" alt="<?php echo $dil["ingdil"];?>"> <?php echo $dil["ingdil"];?></a></li>
-						<li><a href="dil.php?dil=de"><img src="dil/img/de.png" alt="<?php echo $dil["dedil"];?>"> <?php echo $dil["dedil"];?></a></li>
-						<li><a href="dil.php?dil=ru"><img src="dil/img/ru.png" alt="<?php echo $dil["rudil"];?>"> <?php echo $dil["rudil"];?></a></li>
-					  </ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
     <div class="container">
 		<div class="row">
-			<!-- PVP LİSTE BAŞLANGIÇ -->
-			<div class="col-xs-12 col-md-8">
+			<div class="col-xs-12 col-md-8 bosluk-alt">
+				<!-- VİP LİSTE BAŞLANGIÇ -->
 				<div class="table table-responsive">
-					<table id="pvpliste" class="table table-striped table-bordered" cellspacing="0" width="100%">
+					<table class="table table-striped table-bordered" cellspacing="0" width="100%">
 						<thead bgcolor="#222222" style="color:white;">
 							<tr>
 								<th></th>
 								<th><?php echo $dil["baslik"];?></th>
 								<th><?php echo $dil["git"];?></th>
-								<th><?php echo $dil["durum"];?></th>
 								<th><?php echo $dil["servertipi"];?></th>
-								<th>Kapasite</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -193,24 +142,47 @@ include "yonetim/fonksiyon.php";
 								<td>
 								<!-- Eğer favicon ekli değilse bizim belirlediğimiz sitenin faviconu gözükür örnekte google -->
 								<!-- rtrim kullanarak sitenin sonuna olaı eklenmme durumu olan slash karakterini temizledik favicon düzgün gözüksün diye -->
-								<img width="16px;" src="<?php echo rtrim($row_pvpliste['link'],"/"); ?>/favicon.ico" onError="this.src='img/pvp.png';" border="0"/>
-								</td>
-								<td><?php echo $row_pvpliste['baslik']; ?></td>
-								<td><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;<a target="_blank" href="<?php echo $row_pvpliste['link']; ?>" rel="nofollow"><?php echo $dil['git'];?></a></td>
+								<?php $vid = $vip_pvpliste['id']; $vbaslik = $vip_pvpliste['baslik']; ?>
+								<img height="16" width="16" src="http://www.google.com/s2/favicons?domain=<?php echo rtrim($vip_pvpliste['link'],"/"); ?>" onError="this.src='../img/pvp.png'" border="0"/></td>
+								<td><a href="vip-sayfa.php?p=<?php echo $vid; ?>"><?php echo $vbaslik; ?></a></td>
+								<td><span class="glyphicon glyphicon-tower" aria-hidden="true"></span>&nbsp;<strong>VİP</strong>&nbsp;<a target="_blank" href="<?php echo $vip_pvpliste['link']; ?>" rel="nofollow"><?php echo $vip_pvpliste['link'];?></a></td>
+								<td><?php echo $vip_pvpliste['servertipi']; ?></td>
+
+							</tr><?php } while ($vip_pvpliste = mysql_fetch_assoc($vippvpliste)); ?>
+						</tbody>
+					</table>
+				</div>
+				<!-- VİP LİSTE BİTİŞ -->
+
+				<!-- PVPLİST LİSTE BAŞLANGIÇ -->
+				<div class="reklam hidden-xs hidden-sm"><center><img src="http://placehold.it/728x90"></center></div>
+				<div class="table table-responsive">
+					<table id="pvpliste" class="table table-striped table-bordered" cellspacing="0" width="100%">
+						<thead bgcolor="#222222" style="color:white;">
+							<tr>
+								<th></th>
+								<th><?php echo $dil["baslik"];?></th>
+								<th><?php echo $dil["git"];?></th>
+								<th><?php echo $dil["servertipi"];?></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><?php do { ?>
 								<td>
-								<?php Link_Kontrol($row_pvpliste['link']);?>
-								</td>
+								<!-- Eğer favicon ekli değilse bizim belirlediğimiz sitenin faviconu gözükür örnekte google -->
+								<!-- rtrim kullanarak sitenin sonuna olaı eklenmme durumu olan slash karakterini temizledik favicon düzgün gözüksün diye -->
+								<?php $id = $row_pvpliste['id']; $baslik = $row_pvpliste['baslik']; ?>
+								<img height="16" width="16" src="http://www.google.com/s2/favicons?domain=<?php echo rtrim($row_pvpliste['link'],"/"); ?>" onError="this.src='../img/pvp.png'" border="0"/></td>
+								<td><a href="<?php echo Seo($baslik); ?>/<?php echo $id; ?>.html"><?php echo $baslik; ?></a></td>
+								<td><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;<a target="_blank" href="<?php echo $row_pvpliste['link']; ?>" rel="nofollow"><?php echo $row_pvpliste['link'];?></a></td>
 								<td><?php echo $row_pvpliste['servertipi']; ?></td>
-								<td><?php echo $row_pvpliste['uridium']; ?></td>
 
 							</tr><?php } while ($row_pvpliste = mysql_fetch_assoc($pvpliste)); ?>
 						</tbody>
 					</table>
 				</div>
-
-
+				<!-- PVPLİST BİTİŞ -->
 			</div>
-			<!-- PVP LİSTE BİTİŞ -->
 
 			<!-- YORUM FORMU BAŞLANGIÇ -->
 			<div class="col-xs-12 col-md-4">
@@ -240,7 +212,7 @@ include "yonetim/fonksiyon.php";
 			
 				<!-- YORUMLAR BAŞLANGIÇ -->
 				<?php do { ?>
-				<div class="media">
+				<div class="media input-group form-control pull-right">
 					<div class="media-left">
 						<a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
 					</div>
@@ -250,7 +222,6 @@ include "yonetim/fonksiyon.php";
 						<?php echo $row_yorumlar['yorum']; ?>
 					</div>
 				</div>
-				<hr />
 				<nav>
 				<ul class="pager">
 				<?php if ($pageNum_yorumlar > 0) { // Show if not first page ?>
@@ -266,20 +237,8 @@ include "yonetim/fonksiyon.php";
 			<!-- YORUMLAR BİTİŞ -->	
 		</div>	
 	</div>
-
-  <div class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-      <p class="navbar-text pull-left">© 2014 - <?php echo date("o"); ?> Okan IŞIK
-           <a href="//okandiyebiri.com" target="_blank" >Pvp Listesi Scripti</a>
-      </p>
-      <a href="<?php echo $row_ayar['footerlink']; ?>" class="hidden-xs navbar-btn btn-default btn pull-right">
-      <span class="glyphicon glyphicon-bookmark"></span>  <?php echo $row_ayar['footersol']; ?></a>
-    </div>
-  </div>
-  <script src="js/bootstrap.min.js"></script>
-</body>
-</html>
 <?php
+include "alt.php";
 mysql_free_result($ayar);
 mysql_free_result($yorumlar);
 mysql_free_result($pvpliste);

@@ -1,6 +1,11 @@
 Options +FollowSymLinks
 RewriteEngine on
 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([0-9a-zA-Z-_]+)/([0-9]+).html$  sayfa.php?sef=$1&p=$2 [L,QSA]
+RewriteRule ^([0-9a-zA-Z-_]+)/([0-9]+).html$  vip-sayfa.php?sef=$1&p=$2 [L,QSA]
+
 RewriteRule ^link-ekle.html$ link-ekle.php [L,NC]
 RewriteRule ^index.html$ index.php [L,NC]
 RewriteRule ^tesekkurler.html$ tesekkurler.php [L,NC]

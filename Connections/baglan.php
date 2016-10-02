@@ -1,4 +1,5 @@
 <?php
+$siteadresi		 = "http://localhost:8080/projeler/pvp/";//Site adresinizin sonuna / eklemeyi unutmayın Örn: http://xxxx.com/
 $hostname_baglan = "localhost";
 $database_baglan = "pvp";
 $username_baglan = "root";

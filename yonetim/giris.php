@@ -77,47 +77,24 @@ if (isset($_POST['kullaniciadi'])) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
 <title>Yönetici Giriş Paneli</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/giris.css">
 </head>
-
 <body>
-<form id="form1" name="form1" method="POST" action="<?php echo $loginFormAction; ?>">
-        <script src="//mymaplist.com/js/vendor/TweenLite.min.js"></script>
-        <body>
-            <div class="container">
-                <div class="row vertical-offset-100">
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">                                
-                                <div class="row-fluid user-row">
-                                    <img src="../img/giris.png" class="img-responsive" alt="Admin"/>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <form accept-charset="UTF-8" role="form" class="form-signin">
-                                    <fieldset>
-                                        <label class="panel-login">
-                                            <div class="login_result"></div>
-                                        </label>
-                                        <input class="form-control" placeholder="Kullanıcı Adı" name="kullaniciadi" id="kullaniciadi5" type="text">
-                                        <input class="form-control" placeholder="Şifre" name="sifre" id="sifre" type="password">
-                                        <br></br>
-                                        <input class="btn btn-lg btn-success btn-block" type="submit" name="girisyap" id="girisyap" value="Oturum Aç »">
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </body>
-            </div>
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="../js/bootstrap.js"></script>
-<script src="../js/giris.js"></script>
+  <div class = "container">
+      <form action="" method="post" name="form1" id="form1" class="form-signin">
+          <center><h3 class="form-signin-heading">YÖNETİM PANELİ</h3></center>
+          <p><strong>Kullanıcı adı: </strong>demo <strong>Şifre: </strong>123456</p>         
+          <input type="text" name="kullaniciadi" id="kullaniciadi5" class="form-control" placeholder="Kulalnıcı Adı" required="" autofocus="" />
+          <br/>
+          <input type="password" name="sifre" id="sifre" class="form-control" placeholder="Şifre" required=""/>          
+   
+          <button class="btn btn-lg btn-success btn-block" type="submit" name="girisyap" id="girisyap" value="Oturum Aç">Giriş Yap</button>        
+      </form>     
+  </div>
+  <script src="//getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

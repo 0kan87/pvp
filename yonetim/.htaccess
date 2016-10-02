@@ -2,3 +2,4 @@ Options +FollowSymLinks
 RewriteEngine on
 
 RewriteRule ^pvp-link-(.*)-(.*).html$ liste-duzenle.php?id=$1&duzenle=$2 [L,NC]
+RewriteRule ^vip-pvp-link-(.*)-(.*).html$ vip-liste-duzenle.php?id=$1&duzenle=$2 [L,NC]

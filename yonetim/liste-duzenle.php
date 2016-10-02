@@ -137,10 +137,9 @@ $row_pvpliste = mysql_fetch_assoc($pvpliste);
 $totalRows_pvpliste = mysql_num_rows($pvpliste);
 include "ust.php";
 ?>
-
   <div class="container">
   <div class="row">
-  	<div class="col-md-4 col-md-offset-4">
+  	<div class="col-md-6 col-md-offset-3">
     	<form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
       	<div class="input-group">
         	<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></span>
@@ -169,10 +168,15 @@ include "ust.php";
         	</select>
       	</div></br>
 
-      	<div class="input-group">
-        	<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Uridium</span>
-        	<input type="text" name="uridium" value="<?php echo htmlentities($row_pvpliste['uridium'], ENT_COMPAT, 'utf-8'); ?>" class="form-control" placeholder="Rakamsal bir değer girin..." required>
-      	</div></br>
+      <div class="form-group">
+        <textarea type="text" id="editor1" name="uridium" class="ckeditor form-control" id="textarea" placeholder="<?php echo $dil["rakamsaldeger"];?>" rows="8"><?php echo htmlentities($row_pvpliste['uridium']); ?></textarea>
+            <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'editor1' );
+                config.extraPlugins = 'uploadimage';
+            </script>       
+      </div>
 
       	<div class="input-group">
         	<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Yayınlanma Durumu</span>

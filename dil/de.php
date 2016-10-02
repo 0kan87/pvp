@@ -8,6 +8,7 @@ $dil = array(
 "dedil"			=> "Deutsch",
 "rudil"			=> "Russisch",
 "baslik"		=> "Titel",
+"uridium"		=> "uridium",
 "durum"			=> "Fall",
 "servertipi"	=> "Server Typ",
 "git"			=> "Du Gehst",

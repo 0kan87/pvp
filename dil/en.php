@@ -1,5 +1,8 @@
 <?php
 $dil = array(
+"ziyaret"		=> "Visit Site",
+"kacadet"		=> "How many are on the list appear",
+"ara"			=> "Search",
 "anasayfa"		=> "Homepage",
 "pvplinkekle"	=> "Add Pvp Link",
 "dilseciniz"	=> "Select Language",
@@ -8,6 +11,7 @@ $dil = array(
 "dedil"			=> "German",
 "rudil"			=> "Russian",
 "baslik"		=> "Title",
+"uridium"		=> "uridium",
 "durum"			=> "Case",
 "servertipi"	=> "Server Type",
 "git"			=> "Go",
